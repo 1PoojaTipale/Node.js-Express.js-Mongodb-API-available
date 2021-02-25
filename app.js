@@ -21,10 +21,12 @@ app.use(cors());
 
 //My routes
 const categoryRoutes = require("./routes/category");
+const productRoutes = require("./routes/productRoutes");
 
 //My Routes
 
 app.use("/api", categoryRoutes);
+app.use("/api", productRoutes);
 
 
 
