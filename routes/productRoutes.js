@@ -2,22 +2,22 @@ const express = require("express");
 const router = express.Router();
 
 const {
-//   getProductById,
+  getProductById,
   createProduct,
-//   getAllproduct,
-//   getProduct,
+  getAllproduct,
+  getProduct,
   
 } = require("../controller/productController");
 
 
 //all of params
 
-// router.param("productId", getProductById);
+router.param("productId", getProductById);
 
 router.post("/product/create",createProduct);
 
-// router.get("/product",getAllproduct);
-// router.get("/product/:productId", getProduct);
+router.get("/product",getAllproduct);
+router.get("/product/:productId", getProduct); 
 // router.delete("/product/:productId",deleteProduct);
 
 module.exports = router;

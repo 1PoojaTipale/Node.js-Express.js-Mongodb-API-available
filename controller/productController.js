@@ -38,38 +38,39 @@ exports.createProduct =
 };
 
 
-// exports.getAllproduct =
-//    (req, res) => 
-//   {
-//     Product.find().exec((err, product) => {
-//       if (err) {
-//         return res.status(400).json({
-//           error: "NO categories found"
-//         });
-//       }
-//       res.json(product);
-//     });
-//   };
+exports.getAllproduct =
+   (req, res) => 
+  {
+    Product.find().exec((err, productData) => {
+      if (err) {
+        return res.status(400).json({
+          error: "NO products found"
+        });
+      }
+      res.json(productData);
+    });
+  };
 
 
-// exports.getProductById = (req, res, next, id) => {
-//   Product.findById(id)
-//     .populate("category")
-//     .exec((err, product) => {
-//       if (err) {
-//         return res.status(400).json({
-//           error: "Product not found"
-//         });
-//       }
-//       req.product = product;
-//       next();
-//     });
-// };
+exports.getProductById = (req, res, next, id) => {
+  Product.findById(id)
+    .populate("category")
+    .exec((err, productData) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Product not found"
+        }); 
+      }
+      req.product = productData;
+      next();
+    });
+};
 
 
-// exports.getProduct = (req, res) => {
-//     req.product.photo = undefined;
-//     return res.json(req.product);
+exports.getProduct = (req, res) => {
+    req.product.photo = undefined;
+    return res.json(req.product);
+};
 
 // exports.deleteProduct = (req, res) => {
 //   let product = req.product;
