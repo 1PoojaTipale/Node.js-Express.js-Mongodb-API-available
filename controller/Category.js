@@ -1,5 +1,5 @@
-const category = require("../model/category");
-const Category = require("../model/category")
+// const category = require("../model/category");
+const Category = require("../model/category");
 
 // to create category
   
@@ -26,3 +26,37 @@ const Category = require("../model/category")
       res.json(categories);
     });
   }; 
+
+
+
+  
+exports.getCategorybyId = (req, res, next, id) => {
+Category.findById(id)
+    // .populate("category")
+    .exec((err, categoryData) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Category not found"
+        }); 
+      }
+      req.category = categoryData;
+      next();
+    });
+};
+
+
+
+   exports.removeCategory = (req, res) => {
+    const category = req.category;
+  
+    category.remove((err, category) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Failed to delete this category"
+        });
+      }
+      res.json({
+        message: "Successfull deleted"
+      });
+    });
+  };

@@ -21,6 +21,6 @@ router.post(
 login
 );
 
-//router.get(""/signout"", signout);
+// router.get("/signout", signout);
 
 module.exports = router;
